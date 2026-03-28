@@ -1,0 +1,71 @@
+{
+  "name": "@advibes/sdk-web",
+  "version": "0.3.0",
+  "description": "AdVibes Web SDK — monetize your web app with ads",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./components": {
+      "types": "./dist/components.d.ts",
+      "import": "./dist/components.js"
+    },
+    "./auto": {
+      "types": "./dist/auto.d.ts",
+      "import": "./dist/auto.js"
+    },
+    "./config": {
+      "types": "./dist/config.d.ts",
+      "import": "./dist/config.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "pnpm build"
+  },
+  "files": [
+    "dist",
+    "ADVIBES.md",
+    "README.md"
+  ],
+  "keywords": [
+    "advibes",
+    "ads",
+    "monetization",
+    "web-sdk",
+    "vibe-coding",
+    "cross-promotion",
+    "ad-network",
+    "developer-tools"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jgvandehey/advibes-sdk",
+    "directory": "packages/sdk-web"
+  },
+  "homepage": "https://advibes.dev",
+  "bugs": {
+    "url": "https://github.com/jgvandehey/advibes-sdk/issues"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "typescript": "^5.7.0",
+    "vitest": "^4.0.18"
+  }
+}
