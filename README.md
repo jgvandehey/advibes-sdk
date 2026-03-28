@@ -18,8 +18,7 @@ AdVibes is a two-sided ad marketplace built for indie developers:
 
 | Package | Version | Description |
 |---------|---------|-------------|
-| [`@advibes/sdk-web`](./packages/sdk-web) | [![npm](https://img.shields.io/npm/v/@advibes/sdk-web)](https://www.npmjs.com/package/@advibes/sdk-web) | Web SDK for React, Next.js, and vanilla JS |
-| [`@advibes/sdk-react-native`](./packages/sdk-react-native) | Coming soon | React Native SDK for iOS and Android |
+| [`@advibes/sdk-web`](./packages/sdk-web) | [![npm](https://img.shields.io/npm/v/@advibes/sdk-web)](https://www.npmjs.com/package/@advibes/sdk-web) | Web SDK for React, Next.js, vanilla JS, and mobile WebViews |
 
 ## Quick Start
 
@@ -60,6 +59,59 @@ if (ad) {
   // ad.headline, ad.body, ad.ctaText, ad.ctaUrl, ad.imageUrl
   AdVibes.reportClick(ad.impressionId) // on click
 }
+```
+
+### iOS / Android / Mobile
+
+AdVibes works in any app that renders a WebView. Load ads via the script tag or imperative API inside your WebView content:
+
+**React Native (WebView)**
+```tsx
+import { WebView } from 'react-native-webview';
+
+const adHtml = `
+  <html><body>
+    <script src="https://cdn.advibes.dev/v1/sdk.js" data-publisher="pub_YOUR_ID"></script>
+    <div data-advibes="card" data-placement="YOUR_PLACEMENT_ID"></div>
+  </body></html>
+`;
+
+<WebView source={{ html: adHtml }} style={{ height: 400 }} />
+```
+
+**Swift (WKWebView)**
+```swift
+let html = """
+<html><body>
+  <script src="https://cdn.advibes.dev/v1/sdk.js" data-publisher="pub_YOUR_ID"></script>
+  <div data-advibes="card" data-placement="YOUR_PLACEMENT_ID"></div>
+</body></html>
+"""
+webView.loadHTMLString(html, baseURL: URL(string: "https://advibes.dev"))
+```
+
+**Kotlin (Android WebView)**
+```kotlin
+val html = """
+<html><body>
+  <script src="https://cdn.advibes.dev/v1/sdk.js" data-publisher="pub_YOUR_ID"></script>
+  <div data-advibes="card" data-placement="YOUR_PLACEMENT_ID"></div>
+</body></html>
+"""
+webView.settings.javaScriptEnabled = true
+webView.loadDataWithBaseURL("https://advibes.dev", html, "text/html", "UTF-8", null)
+```
+
+**Flutter (webview_flutter)**
+```dart
+WebViewController()
+  ..setJavaScriptMode(JavaScriptMode.unrestricted)
+  ..loadHtmlString('''
+    <html><body>
+      <script src="https://cdn.advibes.dev/v1/sdk.js" data-publisher="pub_YOUR_ID"></script>
+      <div data-advibes="card" data-placement="YOUR_PLACEMENT_ID"></div>
+    </body></html>
+  ''');
 ```
 
 ## Ad Formats
